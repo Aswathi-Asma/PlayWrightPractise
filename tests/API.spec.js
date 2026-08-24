@@ -26,7 +26,7 @@ test.skip('PUT API Testing', async () => {
     const data = await response.json();
     console.log(data);
 });
-test.only('POST API Testing', async () => {
+test.skip('POST API Testing', async () => {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
         method: 'POST',
         body: JSON.stringify({
@@ -45,4 +45,17 @@ test.only('POST API Testing', async () => {
     console.log(data);
 
 });
-    
+ test.only('PATCH Test', async() => {
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts/1', {
+        method: 'PATCH',
+        body: JSON.stringify({
+            title: 'Partially Updated Post'
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    expect(response.status).toBe(200);
+    const data = await response.json();
+    console.log(data);
+ });  
